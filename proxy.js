@@ -6,7 +6,6 @@ export function proxy(request) {
   const token = request.cookies.get("token")?.value;
 
   const { pathname } = request.nextUrl;
-
   if (
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup")
@@ -19,8 +18,8 @@ export function proxy(request) {
     return NextResponse.next();
   }
 
-  if (pathname.startsWith("/shortme")) {
-
+  if (pathname.startsWith("/shortme") || pathname.startsWith("/") ) {
+  
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -42,5 +41,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/login", "/signup", "/shortme/:path*"],
+  matcher: ["/","/login", "/signup", "/shortme/:path*"],
 };

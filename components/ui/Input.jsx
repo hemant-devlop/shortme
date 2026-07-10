@@ -6,13 +6,13 @@ export default function Input({
   return (
     <div className="space-y-2">
 
-      <label className="text-sm text-gray-300">
+      <label className="text-sm text-[#484457]">
         {label}
       </label>
 
       <input
         {...props}
-        className="w-full h-12 px-4 rounded-xl border border-gray-700 bg-zinc-900 outline-none focus:border-white"
+        className="w-full h-10 px-4 rounded-lg border-2 border-[#c9c3da] outline-none focus:border-[#4201c6]"
       />
 
       {error && (
