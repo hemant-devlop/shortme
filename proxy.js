@@ -6,6 +6,11 @@ export function proxy(request) {
   const token = request.cookies.get("token")?.value;
 
   const { pathname } = request.nextUrl;
+
+  if (pathname==='/' && token) {
+    return NextResponse.redirect(new URL("/shortme", request.url));
+  }
+
   if (
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup")
@@ -18,8 +23,8 @@ export function proxy(request) {
     return NextResponse.next();
   }
 
-  if (pathname.startsWith("/shortme") || pathname.startsWith("/") ) {
-  
+  if (pathname.startsWith("/shortme") || pathname.startsWith("/")) {
+
     if (!token) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
@@ -41,5 +46,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/","/login","/links", "/signup", "/shortme/:path*",'/profile'],
+  matcher: ["/", "/login", "/links", "/signup", "/shortme/:path*", '/profile'],
 };
