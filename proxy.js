@@ -41,5 +41,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/","/login", "/signup", "/shortme/:path*"],
+  matcher: ["/","/login","/links", "/signup", "/shortme/:path*",'/profile'],
 };

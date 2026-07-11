@@ -4,6 +4,7 @@ import { useState } from "react";
 import api from "@/services/api";
 
 import Button from "../ui/Button";
+import { SvgDestiny } from "../svg/Svg";
 
 export default function UrlForm({
 
@@ -47,17 +48,17 @@ export default function UrlForm({
 
     return(
 
-        <div className="bg-zinc-900 rounded-2xl p-6 space-y-5">
-
+        <div className="border-2 sticky top-0 bg-[#ffffff] border-[#e4e1ec] rounded-2xl p-6 space-y-5">
+<div className="uppercase sm:text-xl text-[#4200c6] text-sm font-bold flex gap-2"><span><SvgDestiny/></span> DESTINATION URL</div>
             <input
 
             value={url}
 
             onChange={(e)=>setUrl(e.target.value)}
 
-            placeholder="Paste your URL"
+            placeholder="https://your-extremely-long-enterprise-link-goes-here.com/deep/path"
 
-            className="w-full h-14 rounded-xl bg-zinc-950 px-5 border border-zinc-800 outline-none"
+            className="w-full h-14 rounded-xl  px-5 border-2 border-[#e4e1ec] focus-within:border-[#4200c6] outline-none"
 
             />
 

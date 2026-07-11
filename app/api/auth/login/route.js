@@ -37,7 +37,7 @@ export async function POST(req) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid Credentials",
+          message: "User Not found",
         },
         { status: 401 }
       );
@@ -50,7 +50,7 @@ export async function POST(req) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid Credentials",
+          message: "Invalid Password",
         },
         { status: 401 }
       );

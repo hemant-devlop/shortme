@@ -17,6 +17,7 @@ export default function LoginForm() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const {
     register,
@@ -25,39 +26,27 @@ export default function LoginForm() {
   } = useForm();
 
   async function onSubmit(data) {
-
     try {
-
       setLoading(true);
+      setFormError("");
 
       const res = await api.post("/auth/login", data);
 
       if (res.data.success) {
-
         router.push("/shortme");
-
         router.refresh();
-
       }
-
     } catch (err) {
-
-      alert(
-        err.response?.data?.message ||
-        "Login Failed"
-      );
-
+      console.log(err.response.data)
+      setFormError(err.response?.data?.message || "Login Failed");
     } finally {
-
       setLoading(false);
-
     }
-
   }
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#f7f5ff] px-4 py-8">
-    <div className="absolute left-[-20px] top-[-20px] h-50 w-44 rounded-full bg-[#4201c6]/20 blur-2xl" />
+    <div className="absolute -left-5 -top-5 h-50 w-44 rounded-full bg-[#4201c6]/20 blur-2xl" />
 
       <Card>
         <div className="w-full max-w-md">
@@ -117,6 +106,12 @@ export default function LoginForm() {
                 Forgot password?
               </Link>
             </div>
+
+            {formError && (
+              <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-600">
+                {formError}
+              </div>
+            )}
 
             <Button
               loading={loading}

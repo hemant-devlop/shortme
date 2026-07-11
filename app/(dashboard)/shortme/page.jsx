@@ -37,7 +37,7 @@ export default function Dashboard(){
 
     return(
 
-        <div className="space-y-8">
+        <div className="space-y-8  h-full overflow-y-auto scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
             <UrlForm
 
@@ -53,7 +53,7 @@ export default function Dashboard(){
 
             ) : (
 
-                <div className="space-y-4">
+                <div className="space-y-4 h-full overflow-auto">
 
                     {links.map(link=> (
 

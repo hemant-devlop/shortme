@@ -10,7 +10,15 @@ export default async function AnalyticsPage() {
 	const user = await getUser();
 	if (!user) return <div className="p-6 text-gray-400">Unauthorized</div>;
 
-	const links = await Link.find({ userId: user.id }).sort({ createdAt: -1 }).lean();
+	const rawLinks = await Link.find({ userId: user.id }).sort({ createdAt: -1 }).lean();
+	const links = rawLinks.map((link) => ({
+		...link,
+		_id: link._id?.toString?.() ?? link._id,
+		userId: link.userId?.toString?.() ?? link.userId ?? null,
+		createdAt: link.createdAt ? new Date(link.createdAt).toISOString() : null,
+		updatedAt: link.updatedAt ? new Date(link.updatedAt).toISOString() : null,
+		expiresAt: link.expiresAt ? new Date(link.expiresAt).toISOString() : null,
+	}));
 
 	return (
 		<div className="space-y-6">
